@@ -1,0 +1,5 @@
+pass=  =-@ndroid-=
+alias= pulse
+pass alias= pulsemoh
+
+City= Gaza
