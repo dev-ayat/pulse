@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -109,7 +108,7 @@ public class GrouptestFragment extends Fragment implements LaborderAdapter.myInt
                     public void onClick(DialogInterface dialog, int id) {
                         Controller.LOADER_DIALOG.showDialog("جاري الإضافة للمفضلة");
                         //mDialogLoding.showDialog("جاري الإضافة للمفضلة");
-                        Toast.makeText(getContext(), "Add fav", Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(getContext(), "Add fav", Toast.LENGTH_SHORT).show();
                         sendFavListData();
                     }
                 })
@@ -255,7 +254,7 @@ public class GrouptestFragment extends Fragment implements LaborderAdapter.myInt
                             @Override
                             public void run() {
                                 Controller.LOADER_DIALOG.hideDialog();
-                                Controller.Msg_DIALOG.showDialog("لم تتم الإضافة");
+                                Controller.Msg_DIALOG.showDialog("تمت الإضافة مسبقاً");
                             }
                         }, 3000);
                         Controller.Msg_DIALOG.hideDialog();
