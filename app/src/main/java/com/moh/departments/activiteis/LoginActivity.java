@@ -61,12 +61,15 @@ public class LoginActivity extends AppCompatActivity {
     String user, pass;
     private Dialog pDialog;
     private TextView txtResponse;
+    private Controller controller;
+
     // temporary string to show the parsed response
     private String jsonResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         Controller.LOADER_DIALOG = new DialogLoding(this);
         Controller.Msg_DIALOG = new DialogMsg(this);
@@ -128,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
 
     public void doLogin(String username, String password) {
 
@@ -242,9 +246,22 @@ public class LoginActivity extends AppCompatActivity {
                                                 public void run() {
                                                     Controller.LOADER_DIALOG.hideDialog();
                                                     Log.e("splash", Controller.pref.getString("LOGIN_MODE", "0"));
-                                                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                                                    startActivity(i);
-                                                    finish();
+
+                                                    ////////
+                                                    // Checking for first time launch
+                                                    controller = new Controller();
+                                                    if (!controller.isFirstTimeLaunch()) {
+                                                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                                                        startActivity(i);
+                                                        finish();
+                                                    } else {
+                                                        Intent i = new Intent(LoginActivity.this, boardingActivity.class);
+                                                        startActivity(i);
+                                                        finish();
+                                                    }
+
+                                                    ///////
+
                                                 }
                                             }, 3000);
 

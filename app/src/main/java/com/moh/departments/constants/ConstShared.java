@@ -16,5 +16,5 @@ public class ConstShared {
     public static String username = "username";
     public static String password = "password";
     public static String OrderList = "OrderList";
-
+    public static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 }

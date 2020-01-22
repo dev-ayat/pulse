@@ -30,6 +30,7 @@ import com.moh.departments.dialog.DialogMsg;
 import com.moh.departments.fragment.DepartmentsFragment;
 import com.moh.departments.fragment.HomeFragment;
 import com.moh.departments.fragment.PatientFragment;
+import com.moh.departments.fragment.PieChartFragment;
 import com.moh.departments.models.MenuModel;
 import com.moh.departments.models.PrivMenu;
 import com.moh.departments.models.Screen;
@@ -125,6 +126,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(new Intent(this, icd10Activity.class));
     }
 
+    public void show_onboarding() {
+        startActivity(new Intent(this, boardingActivity.class));
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -159,8 +163,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void prepareMenuData() {
 
         MenuModel menuModel;
-        menuModel = new MenuModel("الرئيسية", true, false, 0); //PrivMenu of Android Tutorial. No sub menus
-        headerList.add(menuModel);
+//        menuModel = new MenuModel("الرئيسية", true, false, 0); //PrivMenu of Android Tutorial. No sub menus
+//        headerList.add(menuModel);
         for (int i = 0; i < Controller.PrivMENUS.size(); i++) {
 
             String name = Controller.PrivMENUS.get(i).getName();
@@ -190,7 +194,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         menuModel = new MenuModel("الاستعلام عن icd10", true, false, 1); //PrivMenu of Android Tutorial. No sub menus
         headerList.add(menuModel);
-        menuModel = new MenuModel("تسجيل الخروج", true, false, 2); //PrivMenu of Android Tutorial. No sub menus
+        menuModel = new MenuModel("حول التطبيق", true, false, 2); //PrivMenu of Android Tutorial. No sub menus
+        headerList.add(menuModel);
+        menuModel = new MenuModel("تسجيل الخروج", true, false, 3); //PrivMenu of Android Tutorial. No sub menus
         headerList.add(menuModel);
 
 
@@ -205,6 +211,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
 
+
                 if (headerList.get(groupPosition).isGroup) {
                     if (!headerList.get(groupPosition).hasChildren) {
                         FrameLayout fragment = findViewById(R.id.content_frame);
@@ -213,13 +220,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         Fragment myfragment = null;
                         Fragment homefragment = new HomeFragment();
                         switch (menuid) {
-                            case 0:
-                                myfragment = new HomeFragment();
-                                break;
                             case 1:
                                 open_icd10();
                                 break;
                             case 2:
+                                show_onboarding();
+                                break;
+                            case 3:
                                 close_app();
                                 break;
                         }
@@ -249,17 +256,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     PrivMenu menu = Controller.PrivMENUS.get(groupPosition);
                     Screen screen = menu.getScreens().get(childPosition);
                     // Toast.makeText(HomeActivity.this, "screen id:"+screen.getId(), Toast.LENGTH_SHORT).show();
+                    // Log.e( "onChildClick: ","screen id"+screen.getId() );
                     FrameLayout fragment = findViewById(R.id.content_frame);
                     int screenid = screen.getId();
                     Fragment myfragment = null;
                     switch (screenid) {
 
-                        case 549:
+                        case 537:
 
                             ///spc_dept
                             ///end spc dept
 
                             myfragment = new PatientFragment();
+                            break;
+
+                        case 770:
+
+                            myfragment = new PieChartFragment();
                             break;
                     }
 

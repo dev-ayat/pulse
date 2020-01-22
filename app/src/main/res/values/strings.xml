@@ -12,4 +12,5 @@
     <string name="action_noti">Notifications</string>
     <string name="action_dept">Departments</string>
     <string name="action_about">about</string>
+    <string name="onboardingd">يمكنك تصفح بيانات المرضى و مشاهدة السجل الطبي للمريض بالكامل.</string>
 </resources>

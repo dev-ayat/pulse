@@ -1,6 +1,5 @@
 package com.moh.departments.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,12 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,7 +66,7 @@ public class PatientFragment extends Fragment {//implements SearchView.OnQueryTe
         recyclerView = (RecyclerView) view.findViewById(R.id.patient_recycler_view);
         SearchView emptyTextView = view.findViewById(android.R.id.empty);
         Carddata = new ArrayList<>();
-        cardviewadapter = new CardviewAdapter(Carddata);
+        cardviewadapter = new CardviewAdapter(getContext(), Carddata);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -79,7 +75,7 @@ public class PatientFragment extends Fragment {//implements SearchView.OnQueryTe
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cardviewadapter);
         preparedeptData();
-        Touchlistner();
+        //Touchlistner();
 
 
         emptyTextView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -102,7 +98,7 @@ public class PatientFragment extends Fragment {//implements SearchView.OnQueryTe
                     }
                 }
 
-                cardviewadapter = new CardviewAdapter(filteredValues);
+                cardviewadapter = new CardviewAdapter(getContext(), filteredValues);
                 recyclerView.setAdapter(cardviewadapter);
                 cardviewadapter.notifyDataSetChanged();
 
@@ -203,85 +199,89 @@ public class PatientFragment extends Fragment {//implements SearchView.OnQueryTe
     }
 
     public void resetSearch() {
-        cardviewadapter = new CardviewAdapter(Carddata);
+        cardviewadapter = new CardviewAdapter(getContext(), Carddata);
 
         recyclerView.setAdapter(cardviewadapter);
     }
 
-    public void Touchlistner() {
-        touchListener = new RecyclerTouchListener((Activity) getContext(), recyclerView);
-        touchListener
-                .setClickable(new RecyclerTouchListener.OnRowClickListener() {
-                    @Override
-                    public void onRowClicked(int position) {
-                        Toast.makeText(getContext(), " Not Available", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onIndependentViewClicked(int independentViewID, int position) {
-                    }
-                })
-                .setSwipeOptionViews(R.id.delete_task, R.id.edit_task, R.id.rad_task)
-                .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
-                    @Override
-                    public void onSwipeOptionClicked(int viewID, int position) {
-
-                        String patname = cardviewadapter.getDataSet().get(position).getPatname().toString();
-                        String patmrpid = cardviewadapter.getDataSet().get(position).getPtmrpid().toString();
-                        String indate = Carddata.get(position).getIndate().toString();
-                        int patidint = cardviewadapter.getDataSet().get(position).getPatid();
-                        int patadmcd = cardviewadapter.getDataSet().get(position).getAdmcd();
-
-                        String patid = String.valueOf(patidint);
-                        String patmrp = String.valueOf(patmrpid);
-                        String patadm = String.valueOf(patadmcd);
-                        Bundle args = new Bundle();
-                        args.putString("patname", patname);
-                        args.putString("patid", patid);
-                        args.putString("patmrp", patmrp);
-                        args.putString("indate", indate);
-                        args.putString("patadm", patadm);
-                        switch (viewID) {
-                            case R.id.delete_task:
-                                //  Toast.makeText(getContext(),Carddata.get(position).getPatname(),Toast.LENGTH_SHORT).show();
-                                LabFragment labFragment = new LabFragment();
-                                FragmentManager fm = getFragmentManager();
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                labFragment.setArguments(args);
-                                Log.d("ayat", patid);
-                                Log.d("ayat2", patname);
-
-                                ft.replace(R.id.content_frame, labFragment);
-                                ft.addToBackStack(null);
-                                ft.commit();
-                                break;
-                            case R.id.edit_task:
-                                //Toast.makeText(getContext(),"Rad Not Available", Toast.LENGTH_SHORT).show();
-                                Efile_Fragment efile_Fragment = new Efile_Fragment();
-                                FragmentManager efilefm = getFragmentManager();
-                                FragmentTransaction efileft = getFragmentManager().beginTransaction();
-                                efile_Fragment.setArguments(args);
-                                Log.d("ayat", patid);
-                                Log.d("ayat2", patname);
-                                efileft.replace(R.id.content_frame, efile_Fragment);
-                                efileft.addToBackStack(null);
-                                efileft.commit();
-                                break;
-                            case R.id.rad_task:
-                                Toast.makeText(getContext(), "pharm Not Available", Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.radiology_task:
-                                Toast.makeText(getContext(), "rad Not Available", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                    }
-                });
-    }
+//    public void Touchlistner() {
+//        touchListener = new RecyclerTouchListener((Activity) getContext(), recyclerView);
+//        touchListener
+//                .setClickable(new RecyclerTouchListener.OnRowClickListener() {
+//                    @Override
+//                    public void onRowClicked(int position) {
+//                        Toast.makeText(getContext(), " Not Available", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onIndependentViewClicked(int independentViewID, int position) {
+//                    }
+//                })
+//                .setSwipeOptionViews(R.id.delete_task, R.id.edit_task, R.id.rad_task ,R.id.radiology_task)
+//                .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
+//                    @Override
+//                    public void onSwipeOptionClicked(int viewID, int position) {
+//
+//                        String patname = cardviewadapter.getDataSet().get(position).getPatname().toString();
+//                        String patmrpid = cardviewadapter.getDataSet().get(position).getPtmrpid().toString();
+//                        String indate = Carddata.get(position).getIndate().toString();
+//                        int patidint = cardviewadapter.getDataSet().get(position).getPatid();
+//                        int patadmcd = cardviewadapter.getDataSet().get(position).getAdmcd();
+//
+//                        String patid = String.valueOf(patidint);
+//                        String patmrp = String.valueOf(patmrpid);
+//                        String patadm = String.valueOf(patadmcd);
+//                        Bundle args = new Bundle();
+//                        args.putString("patname", patname);
+//                        args.putString("patid", patid);
+//                        args.putString("patmrp", patmrp);
+//                        args.putString("indate", indate);
+//                        args.putString("patadm", patadm);
+//                        switch (viewID) {
+//                            case R.id.delete_task:
+//                                LabFragment labFragment = new LabFragment();
+//                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                                labFragment.setArguments(args);
+//                                Log.d("ayat", patid);
+//                                Log.d("ayat2", patname);
+//
+//                                ft.replace(R.id.content_frame, labFragment);
+//                                ft.addToBackStack(null);
+//                                ft.commit();
+//                                break;
+//                            case R.id.edit_task:
+//                                Efile_Fragment efile_Fragment = new Efile_Fragment();
+//                                FragmentTransaction efileft = getFragmentManager().beginTransaction();
+//                                efile_Fragment.setArguments(args);
+//                                Log.d("ayat", patid);
+//                                Log.d("ayat2", patname);
+//                                efileft.replace(R.id.content_frame, efile_Fragment);
+//                                efileft.addToBackStack(null);
+//                                efileft.commit();
+//                                break;
+//                            case R.id.rad_task:
+//                                Toast.makeText(getContext(), "pharm Not Available", Toast.LENGTH_SHORT).show();
+//                                break;
+//                            case R.id.radiology_task:
+//                               // Toast.makeText(getContext(), "rad  Available", Toast.LENGTH_SHORT).show();
+//                                RadFragment radFragment = new RadFragment();
+//                                FragmentTransaction fragtrans = getFragmentManager().beginTransaction();
+//                                radFragment.setArguments(args);
+//                                Log.d("ayat", patid);
+//                                Log.d("ayat2", patname);
+//                                fragtrans.replace(R.id.content_frame, radFragment);
+//                                fragtrans.addToBackStack(null);
+//                                fragtrans.commit();
+//                                break;
+//                        }
+//                    }
+//                });
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
-        recyclerView.addOnItemTouchListener(touchListener);
+        //recyclerView.addOnItemTouchListener(touchListener);
         // Set title bar
         ((HomeActivity) getActivity())
                 .setActionBarTitle("الأقسام الداخلية");

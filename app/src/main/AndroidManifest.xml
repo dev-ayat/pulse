@@ -16,7 +16,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activiteis.icd10Activity"></activity>
+        <activity android:name=".ChartActivity">
+
+        </activity>
+        <activity android:name=".activiteis.boardingActivity"></activity>
+        <activity android:name=".activiteis.icd10Activity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -31,10 +35,10 @@
         </activity>
         <activity
             android:name=".activiteis.LoginActivity"
-            android:label="تسجيل الدخول"></activity>
+            android:label="تسجيل الدخول" />
         <activity
             android:name=".activiteis.HomeActivity"
-            android:label="الرئيسية"></activity>
+            android:label="الرئيسية" />
     </application>
 
 </manifest>

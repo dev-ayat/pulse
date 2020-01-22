@@ -1,8 +1,5 @@
 package com.moh.departments.models;
 
-/**
- * Created by iyad on 05/12/2017.
- */
 
 public class Screen {
     int id;

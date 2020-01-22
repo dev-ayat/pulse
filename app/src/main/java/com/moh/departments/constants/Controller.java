@@ -43,10 +43,12 @@ public class Controller extends Application {
     public static String INSERT_FAV_LAB_TEST_URL = ROOT + "ADD_TOFAVOURITE_TEST";
     public static String DELETE_FAV_LAB_TEST_URL = ROOT + "REMOVEFROM_FAV_TEST";
     public static String GET_FAV_LAB_TEST_URL = ROOT + "GET_ALL_FAVOURITE_TEST";
+    public static String GET_GET_PHOTO_RAD_URL = ROOT + "GET_PAINT_REPORT_RAD";
     public static DialogLoding LOADER_DIALOG = null;
     public static DialogMsg Msg_DIALOG = null;
     public static SharedPreferences pref;
     public static SharedPreferences.Editor editor;
+
     public static ArrayList<PrivMenu> PrivMENUS = new ArrayList();
     //  public static ArrayList<JSONObject> SCREENS = new ArrayList();
     public static Context myContext;
@@ -57,7 +59,6 @@ public class Controller extends Application {
     public static synchronized Controller getInstance() {
         return mInstance;
     }
-
 
 //    public static ArrayList<Labordertestmodel> getLabordertestmodel()
 //    {
@@ -89,7 +90,6 @@ public class Controller extends Application {
         else
             return false;
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -99,6 +99,16 @@ public class Controller extends Application {
         editor = pref.edit();
         initShared();
     }
+
+    public boolean isFirstTimeLaunch() {
+        return pref.getBoolean(ConstShared.IS_FIRST_TIME_LAUNCH, true);
+    }
+
+    public void setFirstTimeLaunch(boolean isFirstTime) {
+        editor.putBoolean(ConstShared.IS_FIRST_TIME_LAUNCH, isFirstTime);
+        editor.commit();
+    }
+
 
     public void initShared() {
         editor.putInt(ConstShared.USER_CODE, -1);

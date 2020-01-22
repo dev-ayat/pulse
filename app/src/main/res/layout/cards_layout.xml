@@ -1,142 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:id="@+id/hscroll"
+    android:scrollbars="none">
 
     <LinearLayout
-        android:id="@+id/rowBG"
-        android:layout_width="175dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="0dp"
-        android:background="#293dc4b4"
-        android:gravity="right"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:visibility="visible">
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:id="@+id/delete_task"
-            android:layout_width="40dp"
+        <LinearLayout
+            android:id="@+id/rowBG"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
+            android:layout_alignParentRight="true"
+            android:background="#293dc4b4"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/img_delete"
+                    android:id="@+id/img_lab"
                     android:layout_width="40dp"
                     android:layout_height="41dp"
                     android:layout_gravity="center"
                     android:background="@drawable/testicon"
                     android:src="@drawable/testicon" />
             </LinearLayout>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/edit_task"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/img_edit"
-                    android:layout_width="28dp"
-                    android:layout_height="29dp"
+                    android:id="@+id/img_files"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:background="@drawable/outclinicicon"
                     android:src="@drawable/outclinicicon" />
             </LinearLayout>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/rad_task"
-                    android:layout_width="40dp"
-                    android:layout_height="41dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/medicalicon"
-                    android:src="@drawable/medicalicon" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/radiology_task"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/radiology_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="41dp"
+                    android:id="@+id/img_rad"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
                     android:layout_gravity="center"
                     android:background="@drawable/xrayicon"
                     android:src="@drawable/xrayicon" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_pharm"
+                    android:layout_width="41dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/medicalicon"
+                    android:src="@drawable/medicalicon" />
+            </LinearLayout>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/rowFG"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/white"
-        android:clickable="true"
-        android:elevation="4dp"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:tag="cards main container"
-        android:visibility="visible">
+        </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:id="@+id/rowFG"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foreground="?attr/selectableItemBackground">
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:tag="cards main container"
+            android:visibility="visible">
 
             <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/card_view"
@@ -149,7 +113,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingRight="15dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -185,7 +150,7 @@
                         android:weightSum="6">
 
                         <TextView
-                            android:id="@+id/lblpatid"
+                            android:id="@+id/lbldocid"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
@@ -317,8 +282,9 @@
 
             </androidx.cardview.widget.CardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 
-</RelativeLayout>
+</HorizontalScrollView>
