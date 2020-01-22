@@ -248,7 +248,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     Log.e("splash", Controller.pref.getString("LOGIN_MODE", "0"));
 
                                                     ////////
-                                                    // Checking for first time launch
+                                                    // Checking for first time launch for boarding screen
                                                     controller = new Controller();
                                                     if (!controller.isFirstTimeLaunch()) {
                                                         Intent i = new Intent(LoginActivity.this, HomeActivity.class);
@@ -256,6 +256,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         finish();
                                                     } else {
                                                         Intent i = new Intent(LoginActivity.this, boardingActivity.class);
+                                                        controller.setFirstTimeLaunch(false);
                                                         startActivity(i);
                                                         finish();
                                                     }

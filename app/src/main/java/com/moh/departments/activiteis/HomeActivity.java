@@ -269,7 +269,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                             myfragment = new PatientFragment();
                             break;
+                        case 765:
 
+                            myfragment = new HomeFragment();
+
+                            break;
                         case 770:
 
                             myfragment = new PieChartFragment();

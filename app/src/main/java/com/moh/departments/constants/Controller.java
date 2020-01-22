@@ -102,6 +102,7 @@ public class Controller extends Application {
 
     public boolean isFirstTimeLaunch() {
         return pref.getBoolean(ConstShared.IS_FIRST_TIME_LAUNCH, true);
+
     }
 
     public void setFirstTimeLaunch(boolean isFirstTime) {
